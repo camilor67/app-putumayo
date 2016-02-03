@@ -1,0 +1,21 @@
+{
+  "name": "SISTEMATIZACIÓN DE LA EXPERIENCIA DEL  PROGRAMA DE GESTIÓN DEL RIESGO DE PUTUMAYO",
+  "description": "La sistematización tuvo como objetivos analizar los procesos y actividades del PGSR, para generar así nuevos conocimientos y aprendizajes que permitan fortalecer el programa, y generar una herramienta informática para la consulta y el seguimiento de resultados, procesos y compromisos que resulten del programa, alimentada con indicadores generados por éste proyecto.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": {
+    "16": "file-manager.png",
+    "128": "file-manager.png"
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications",
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/*",
+    "webview"
+  ]
+}
