@@ -5,12 +5,12 @@
   "manifest_version": 2,
   "app": {
     "background": {
-      "scripts": ["background.js"]
+      "scripts": ["js/background.js"]
     }
   },
   "icons": {
-    "16": "file-manager.png",
-    "128": "file-manager.png"
+    "16": "images/icono-app.png",
+    "128": "images/icono-app.png"
   },
   "permissions": [
     "unlimitedStorage",

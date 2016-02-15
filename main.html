@@ -1,29 +1,1049 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Asynchronous Loading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PGSR</title>
+    <link rel="shortcut icon" type="image/png" href="images/icono-app.png"/>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <script src="jquery-1.12.0.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="leaflet.css" />
-    <script src="leaflet.js"></script>
-    <script src="putumayo.js" type="text/javascript"></script>
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css">
+    <script src="bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/putumayo.js" type="text/javascript"></script>
+    <script src="js/colombia.js" type="text/javascript"></script>
+    <script src="js/Veredas_Orito.js" type="text/javascript"></script>
+    <script src="js/Veredas_Pto_Asis.js" type="text/javascript"></script>
+    <script src="js/Veredas_Pto_Caicedo.js" type="text/javascript"></script>
+    <script src="js/Veredas_San_Miguel.js" type="text/javascript"></script>
+    <script src="js/Veredas_Valle_Guamuez.js" type="text/javascript"></script>
     <!--<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>-->
 
   </head>
   <body>
-    <div id="map">
-      <div id="map-menu">
-        <div class='map-project-title'>
-          <div id='title-m'></div>
-          <div class='close-map-project' id="closed">X</div>
+    <div id="header" class="header">
+      <ul>
+        <li class="col-xs-12 col-sm-4 right header-sec">
+          Sistematizaci&oacute;n de la
+          experiencia del programa de
+          Gesti&oacute;n del Riesgo de Putumayo
+        </li>
+        <li class="col-xs-12 col-sm-4 right"><img src="images/ecopetrol.png"></li>
+        <li class="col-xs-12 col-sm-4"><img src="images/logo_corporiesgos.jpg"></li>
+      </ul>
+    </div>
+    <nav class="navbar navbar-projects main">
+      <div class="container-nav-projects">
+        <div class=" navbar-collapse-projects" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav-projects text-center">
+            <li class="col-xs-12 col-md-4 col-lg-4"><a id="about" class="anav nav-selected" href="javascript:void(0)">Acerca de esta herramienta</a></li>
+            <li class="col-xs-12 col-md-4 col-lg-4"><a id="region" class="anav" href="javascript:void(0)">La regi&oacute;n</a></li>
+            <li class="col-xs-12 col-md-4 col-lg-4"><a id="agreement" class="anav" href="javascript:void(0)">Convenios</a></li>
+          </ul>
         </div>
-        <div class='map-project-body' id="body-m"></div>
+      </div>
+    </nav>
+    <div>
+      <div id="about-content">
+        <h5 class="title-date">2016</h5>
+        <h1 class="title">Acerca de esta herramienta</h1>
+        <div class="title-line"></div>
+        <div class="content">
+          <p class="text-justify">
+            El Programa de <b>Gestión Social del Riesgo – PGSR de Ecopetrol S.A. – Corporiesgos</b> se implementa a partir de convenios de colaboración entre estas dos entidades con el fin de desarrollar intervenciones en los municipios que son área de influencia de la infraestructura <b>Ecopetrol S.A.</b> en el departamento del Putumayo. Actualmente se desarrolla el <b>Convenio DHS 5219470</b> en el marco del cual se hace la presente sistematización.
+          </p>
+          <p class="text-justify">
+            Por medio de estos convenios se han tenido dos propósitos principalmente: primero el fortalecimiento comunitario e institucional en gestión de riesgos, y segundo fortalecer procesos de articulación tendientes a fortalecer la gestión de riesgos en el departamento del Putumayo.
+          </p>
+          <p class="text-justify">
+            Tomando en cuenta que estos territorios son diversos y presentan realidades y procesos distintos en sus dimensiones sociales, productivas, económicas, ambientales y políticas, se hace necesario generar herramientas para establecer una relación armónica entre la empresa y las comunidades, herramienta que a la vez permitan potenciar un desarrollo sostenible en estos territorios.
+          </p>
+          <p class="text-justify">
+            En esta herramienta se presentan los resultados de la sistematización de los procesos y actividades del PGSR, llevados a cabo entre los años 2010 y 2015 en los municipios vecinos de la infraestructura de transportes (Oleoducto San Miguel – Orito OSO, Oleoducto Mansoya- Orito OMO, Oleoducto Churuyaco- Orito y Transandino OTA) y Producción en la GPY y en el Corregimiento de Cofanía Jardines de Sucumbíos, en el municipio de Ipiales en el departamento de Nariño.
+          </p>
+        </div>
+        <a class="btn btn-danger" href="convenios/documentos_PDF.zip" download>Descargar documento completo en PDF</a>
+      </div>
+      <div id="region-content" style="display:none">
+        <div id="map">
+          <div id="map-menu">
+            <div class='map-project-title'>
+              <div id='title-m'></div>
+              <div class='close-map-project' id="closed">X</div>
+            </div>
+            <div class='map-project-body' id="body-m"></div>
+          </div>
+        </div>
+        <nav class="navbar navbar-projects">
+          <div class="container-nav-projects">
+            <div class="navbar-collapse-projects-m" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav-projects text-center">
+                <li class="col-xs-6 col-md-2 col-lg-2"><a id="putumayo-nav" class="anavm nav-selected" href="javascript:void(0)">El putumayo</a></li>
+                <li class="col-xs-6 col-md-2 col-lg-2"><a id="orito-nav" class="anavm" href="javascript:void(0)">Orito</a></li>
+                <li class="col-xs-6 col-md-2 col-lg-2"><a id="asis-nav" class="anavm" href="javascript:void(0)">Puerto Asis</a></li>
+                <li class="col-xs-6 col-md-2 col-lg-2"><a id="caicedo-nav" class="anavm" href="javascript:void(0)">Puerto Caicedo</a></li>
+                <li class="col-xs-6 col-md-2 col-lg-2"><a id="miguel-nav" class="anavm" href="javascript:void(0)">San Miguel</a></li>
+                <li class="col-xs-6 col-md-2 col-lg-2"><a id="guamuez-nav" class="anavm" href="javascript:void(0)">Valle del Guamuez</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div>
+          <div id="putumayo-cont" class="content-cont">
+            <h4 class="text-center m-title">El Putumayo</h4>
+            <h1 class="text-center mc-title">Contexto general de los 5 municipios</h1>
+            <div class="container-fluid">
+              <div class="row title-sec">
+                <div id="putu-geo" class="col-md-2 ind-sel putu-ind nav-tab"> 
+                  Indicadores geogr&aacute;ficos
+                </div>
+                <div id="putu-demo" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores demogr&aacute;ficos
+                </div>
+                <div id="putu-ame" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores de amenazas
+                </div>
+                <div id="putu-efec" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores de efectos de desastres
+                </div>
+                <div id="putu-eco" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores econ&oacute;mico de riesgos
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="putu-geo-content">
+                <p>
+                  El área de estudio comprendió los municipios Puerto Asís, Orito, Puerto Caicedo, Valle del Guamuez (La Hormiga) y San Miguel, en del departamento del Putumayo en Colombia. Los cinco municipios ocupan un área de 6736 km², siendo Puerto Asís el de mayor extensión con 2756 km², seguido de Orito con 1866 km², Valle del Guamuez con 994 km², Puerto Caicedo con 738 km², y San Miguel con 385 km². En el área de influencia se identificaron 339 veredas, incluidas 10 que hacen parte del corregimiento de Cofanía Jardines de Sucumbíos, en el municipio de Ipiales en el departamento de Nariño. 
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="putu-geo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="putu-demo-content" style="display:none">
+                <p>
+                  Según el Censo DANE del año 2005, la población estimada es de 144 048 habitantes . La densidad promedio de ocupación es de 21,4 habitantes por km².
+                </p>
+                <p>
+                  La población se distribuye en un 55,1% en la zona rural (79 373 habitantes) y un 44,9% (64 675 habitantes) en las cabeceras municipales; en las zonas rurales prevalece la distribución poblacional dispersa.
+                </p>
+                <p>
+                  El 70,8% de la población (102 020 habitantes) se auto-reconoce mayoritariamente como de otra etnia, mientras que un 16,6% se reconoce como indígenas (23 903 habitantes), seguido de afrodescendientes con un 5,7% (8268 habitantes); el 6,9% de la población se reconoce como raizal o no informa sobre su pertenencia étnica (9857 habitantes).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="putu-demo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="putu-ame-content" style="display:none">
+                <p>
+                  La base de datos de desastres históricos DesInventar de Colombia  reporta 121 fichas de desastres para el periodo comprendido entre marzo de 1970 y julio de 2013 (43 años). El 73,55% de las fichas (89 reportes) corresponden al periodo 2000-2013 (13 años) y el restante 26,45% de las fichas (32 reportes) corresponden al periodo 1973-1999 (28 años).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="putu-ame-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  El 57,85% de los desastres (70 reportes) están asociados a inundaciones; 19,01% desastres (23 reportes) a vendavales; 8,26% a deslizamientos (10 reportes); es decir que más del 85 % de los desastres estuvieron asociados a tres fenómenos de origen hidrometeorológicos. El restante 15% de los reportes de desastres corresponden a incendios estructurales (8 reportes), avenidas torrenciales (4 reportes), accidentes (2 reportes) y escape de sustancias químicas, incendio forestal, sequía y otro, con 1 reporte cada uno. El evento de mayor recurrencia en el área de estudio es la inundación, seguido del evento vendaval.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="putu-ame2-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="putu-efec-content" style="display:none">
+                <p>
+                  Los efectos de estos desastres son variados y sobre el conjunto de la sociedad y la infraestructura. Se reportan 70 víctimas fatales y 95 desaparecidos; en conjunto se reportan cerca de 186 000 personas con algún tipo de afectación, debido principalmente a inundaciones durante la ola invernal 2010-2012. Aparecen 381 viviendas destruidas y 8405 afectadas; respecto a infraestructura esencial se reportan 152 afectaciones a centros educativos y 11 a centros hospitalarios, entre otros efectos. Solo 7 fichas (5,79% del total) reportan perdidas económicas que ascienden a $155 449 016, relacionadas con tres vendavales, tres inundaciones y un accidente de naufragio en agosto de 1995.
+                </p>
+                <div style="overflow: hidden">
+                  <div class="col-md-6" style="margin: auto">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Efecto</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Muertos</td>
+                          <td>70</td>
+                        </tr>
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td>95</td>
+                        </tr>
+                        <tr>
+                          <td>Heridos - Enfermos</td>
+                          <td>71</td>
+                        </tr>
+                        <tr>
+                          <td>Damnificados</td>
+                          <td>5725</td>
+                        </tr>
+                        <tr>
+                          <td>Afectados</td>
+                          <td>178087</td>
+                        </tr>
+                        <tr>
+                          <td>Evacuados</td>
+                          <td>2075</td>
+                        </tr>
+                        <tr>
+                          <td>Reubicados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas destruidas</td>
+                          <td>381</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas afectadas</td>
+                          <td>8405</td>
+                        </tr>
+                        <tr>
+                          <td>Cultivos y bosques ha</td>
+                          <td>27001</td>
+                        </tr>
+                        <tr>
+                          <td>Vias afectadas km</td>
+                          <td>2</td>
+                        </tr>
+                        <tr>
+                          <td>Centros educativos</td>
+                          <td>152</td>
+                        </tr>
+                        <tr>
+                          <td>Centros hospitalarios</td>
+                          <td>11</td>
+                        </tr>
+                        <tr>
+                          <td>Ganado</td>
+                          <td>2000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  La base de datos reporta 23 fichas (19% del total) con 381 viviendas destruidas. Entre los años 1970 y 2009 se reportan 97 viviendas destruidas (25,5% del total), mientras que entre 2011 y 2013 se reportan 284 viviendas destruidas (74,5% del total). El fenómeno que causó mayor destrucción de viviendas fueron las inundaciones: 280 viviendas en total (73,5%). De estas, 219 viviendas fueron destruidas entre los años 2010 y 2013, durante fenómenos asociados con la Ola Invernal.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="putu-efec-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  A partir de estos indicadores se puede inferir que en la última década ha aumentado significativamente la exposición de viviendas a los fenómenos de inundación, igualmente elementos esenciales como centros educativos y hospitalarios y áreas productivas.
+                </p>
+              </div>
+              <div id="putu-eco-content" style="display:none">
+                <p>
+                  Un cálculo indirecto del valor económico acumulado de las pérdidas se puede estimar a partir del número de viviendas destruidas en el periodo de estudio: el valor de reposición de las 381 viviendas a precio de VIS del 2015 , puede ser del orden de $33 147 000 000. El valor de reposición de las 219  viviendas destruidas entre 2010-2013 podría ser de $19 053 000 000.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="putu-eco-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+            </div>
+          </div>
+          <div id="orito-cont" class="content-cont" style="display:none">
+            <h4 class="text-center m-title">Orito</h4>
+            <h1 class="text-center mc-title">Contexto general de Orito</h1>
+            <div class="container-fluid">
+              <div class="row title-sec">
+                <div id="orito-geo" class="col-md-2 ind-sel putu-ind nav-tab"> 
+                  Indicadores geogr&aacute;ficos
+                </div>
+                <div id="orito-demo" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores demogr&aacute;ficos
+                </div>
+                <div id="orito-ame" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores de amenazas
+                </div>
+                <div id="orito-efec" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores de efectos de desastres
+                </div>
+                <div id="orito-eco" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores econ&oacute;mico de riesgos
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="orito-geo-content">
+                <p>
+                  El área del municipio de Orito es de 1866 km² aproximadamente. Se identificaron y cartografiaron 122 veredas, de las 124 que registra el Plan de Desarrollo Municipal 2012-2015 (ver mapa sensitivo).
+                </p>
+                <p>
+                  Para mayor información del municipio ver el  Plan de Desarrollo Municipal 2012-2015 y el PBOT de 2002. (colocar hipervinculo)
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="orito-geo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="orito-demo-content" style="display:none">
+                <p>
+                  Según el Censo DANE del año 2005, la población estimada es de 39 519 habitantes . La densidad promedio de ocupación es de 21,4 habitantes por km².
+                </p>
+                <p>
+                  La población se distribuye en un 54,2% en la zona rural (21 428 habitantes) y un 44,8% en la cabecera municipal (17 731 habitantes); en la zona rural prevalece la distribución poblacional dispersa, con 20 405 habitantes.
+                </p>
+                <p>
+                  El 57,5% de la población (22 711 habitantes) se auto-reconoce como de otra etnia, mientras que un 31,2% se reconoce como indígenas (12 329 habitantes), seguido de afrodescendientes con un 7,6% (2988 habitantes); el 3,8% de la población se reconoce como raizal o no informa sobre su pertenencia étnica (1491 habitantes). Es el municipio con mayor cantidad de población indígena en el área de estudio.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="orito-demo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="orito-ame-content" style="display:none">
+                <p>
+                  La base de datos de desastres históricos DesInventar de Colombia  reporta 21 fichas de desastres para el periodo comprendido entre marzo de 1970 y julio de 2013 (43 años). El 85,7% de las fichas (18 reportes) corresponden al periodo 2000-2013 (13 años) y el restante 14,3% de las fichas (3 reportes) corresponden al periodo 1973-1999 (30 años).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="orito-ame-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  El 38,1% de los desastres (8 reportes) están asociados a inundaciónes y avenidas torrenciales; 23,8% desastres (5 reportes) a vendavales y en igual proporción a deslizamientos; es decir que más del 85% de los desastres estuvieron asociados a tres fenómenos de origen hidrometeorológicos. El restante 19% de los reportes de desastres corresponden a incendios estructurales (2 reportes) y un incendio forestal. El evento de mayor recurrencia son las inundaciones.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="orito-ame2-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="orito-efec-content" style="display:none">
+                <p>
+                  Se reportan 18 víctimas fatales y 4 desaparecidos; se reportan también 13 818 personas con algún tipo de afectación, debido principalmente a fenómenos hidrometeorológicos durante la ola invernal 2010-2012. Aparecen 42 viviendas destruidas y 1489 afectadas; respecto a infraestructura esencial se reportan 32 afectaciones a centros educativos y 3 a centros hospitalarios, entre otros efectos. Solo 1 fichas (4,8% del total) reporta perdidas económicas que ascienden a $24 800 000, relacionadas con un vendaval ocurrido en febrero del año 2000. Los vendavales son los fenómenos que más personas ha afectado en el municipio de Orito.
+                </p>
+                <div style="overflow: hidden">
+                  <div class="col-md-6" style="margin: auto">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Efecto</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Muertos</td>
+                          <td>18</td>
+                        </tr>
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td>4</td>
+                        </tr>
+                        <tr>
+                          <td>Heridos - Enfermos</td>
+                          <td>3</td>
+                        </tr>
+                        <tr>
+                          <td>Damnificados</td>
+                          <td>135</td>
+                        </tr>
+                        <tr>
+                          <td>Afectados</td>
+                          <td>13680</td>
+                        </tr>
+                        <tr>
+                          <td>Evacuados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Reubicados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas destruidas</td>
+                          <td>42</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas afectadas</td>
+                          <td>1489</td>
+                        </tr>
+                        <tr>
+                          <td>Cultivos y bosques ha</td>
+                          <td>462</td>
+                        </tr>
+                        <tr>
+                          <td>Vias afectadas km</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>Centros educativos</td>
+                          <td>32</td>
+                        </tr>
+                        <tr>
+                          <td>Centros hospitalarios</td>
+                          <td>3</td>
+                        </tr>
+                        <tr>
+                          <td>Ganado</td>
+                          <td>0</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  La base de datos reporta 4 fichas (19% del total) con 42 viviendas destruidas entre los años 2010 y 2012, debido a cuatro fenómenos: vendaval (15 viviendas), deslizamientos (15 viviendas), incendios (2 viviendas) e inundaciones (10 viviendas). La base de datos no reporta viviendas destruidas en las décadas anteriores. Vendavales y deslizamentos son los fenómenos que más viviendas han destruido en el municipio de orito.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="orito-efec-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  Tambien reporta 5 fichas (24%) con 1126 viviendas afectadas por vendavales; 121 viviendas afectadas en el año 2000 y 1005 viviendas entre 2010 y 2012; tambien se reportan 31 centros educativos afectados, lo que hace de este fenómeno el de mayor impacto en el municipio.
+                </p>
+                <p>
+                  A partir de estos indicadores se puede inferir que en la última década ha aumentado significativamente la exposición de viviendas y centros educativos al fenómeno vendaval y también que estas estructuras son vulnerables a este tipo de fenómenos.
+                </p>
+              </div>
+              <div id="orito-eco-content" style="display:none">
+                <p>
+                  Un cálculo indirecto del valor económico acumulado de las pérdidas se puede estimar a partir del número de viviendas destruidas en el periodo de estudio: el valor de reposición de las 42 viviendas a precio de VIS del 2015 , puede ser del orden de $3654 000 000.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="orito-eco-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+            </div>
+          </div>
+          <div id="asis-cont" class="content-cont" style="display:none">
+            <h4 class="text-center m-title">Puerto Asis</h4>
+            <h1 class="text-center mc-title">Contexto general de Puerto Asis</h1>
+            <div class="container-fluid">
+              <div class="row title-sec">
+                <div id="asis-geo" class="col-md-2 ind-sel putu-ind nav-tab"> 
+                  Indicadores geogr&aacute;ficos
+                </div>
+                <div id="asis-demo" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores demogr&aacute;ficos
+                </div>
+                <div id="asis-ame" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores de amenazas
+                </div>
+                <div id="asis-efec" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores de efectos de desastres
+                </div>
+                <div id="asis-eco" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores econ&oacute;mico de riesgos
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="asis-geo-content">
+                <p>
+                  El área del municipio de Puerto Asís es de 2756 km² aproximadamente. Se identificaron y cartografiaron 49 veredas, de las 152 que registra el Plan de Desarrollo Municipal 2012-2015 (ver mapa sensitivo).
+                </p>
+                <p>
+                  Para mayor información del municipio ver el  Plan de Desarrollo Municipal 2012-2015 y el PBOT de 2000. (colocar hipervinculo)
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="asis-geo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="asis-demo-content" style="display:none">
+                <p>
+                  Según el Censo DANE del año 2005, la población estimada es de 45 745 habitantes . La densidad promedio de ocupación es de 16,6 habitantes por km².
+                </p>
+                <p>
+                  La población se distribuye en un 38,8% en la zona rural (17 742 habitantes) y un 61,2% (28 003 habitantes) en la cabecera municipal; en las zonas rurales prevalece la distribución poblacional dispersa.
+                </p>
+                <p>
+                  El 75,6% de la población (34 588 habitantes) se auto-reconoce mayoritariamente como de otra etnia, mientras que un 11,9% se reconoce como indígenas (5434 habitantes), seguido de afrodescendientes con un 7,2% (3305 habitantes); el 5,3% de la población se reconoce como raizal o no informa sobre su pertenencia étnica (2418 habitantes).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="asis-demo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="asis-ame-content" style="display:none">
+                <p>
+                  La base de datos de desastres históricos DesInventar de Colombia  reporta 58 fichas de desastres para el municipio de Puerto Asís en el periodo comprendido entre marzo de 1970 y julio de 2013 (43 años). El 60,3% de las fichas (35 reportes) corresponden al periodo 2000-2013 (13 años) y el restante 39,7% de las fichas (23 reportes) corresponden al periodo 1973-1999 (30 años).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="asis-ame-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  El 60,3% de los desastres (35 reportes) están asociados a inundaciónes; 17,2% desastres (10 reportes) a vendavales; los deslizamientos e incendios aparecen con el 8,6% a cada uno (10 reportes); es decir que más del 86 % de los desastres estuvieron asociados a tres fenómenos de origen hidrometeorológicos. El resto de los reportes de desastres corresponden a accidente, sequía y otro, con 1 reporte cada uno. El evento de mayor recurrencia son las inundaciones.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="asis-ame2-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="asis-efec-content" style="display:none">
+                <p>
+                  Se reportan 34 víctimas fatales y 83 desaparecidos; en conjunto se reportan cerca de 106 000 personas con algún tipo de afectación, debido principalmente a inundaciones durante la ola invernal 2010-2012. Aparecen 381 viviendas destruidas y 8405 afectadas; respecto a infraestructura esencial se reportan 152 afectaciones a centros educativos y 11 a centros hospitalarios, entre otros efectos. Solo 7 fichas (5,79% del total) reportan perdidas económicas que ascienden a $155 449 016, relacionadas con tres vendavales, tres inundaciones y un accidente de naufragio en agosto de 1995.  Las inundaciones son los fenómenos que más personas ha afectado en el municipio de Puerto Asís.
+                </p>
+                <div style="overflow: hidden">
+                  <div class="col-md-6" style="margin: auto">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Efecto</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Muertos</td>
+                          <td>34</td>
+                        </tr>
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td>83</td>
+                        </tr>
+                        <tr>
+                          <td>Heridos - Enfermos</td>
+                          <td>45</td>
+                        </tr>
+                        <tr>
+                          <td>Damnificados</td>
+                          <td>4410</td>
+                        </tr>
+                        <tr>
+                          <td>Afectados</td>
+                          <td>99343</td>
+                        </tr>
+                        <tr>
+                          <td>Evacuados</td>
+                          <td>2055</td>
+                        </tr>
+                        <tr>
+                          <td>Reubicados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas destruidas</td>
+                          <td>226</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas afectadas</td>
+                          <td>4467</td>
+                        </tr>
+                        <tr>
+                          <td>Cultivos y bosques ha</td>
+                          <td>15151</td>
+                        </tr>
+                        <tr>
+                          <td>Vias afectadas km</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>Centros educativos</td>
+                          <td>72</td>
+                        </tr>
+                        <tr>
+                          <td>Centros hospitalarios</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>Ganado</td>
+                          <td>2000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  La base de datos reporta 13 fichas (22,4% del total) con 226 viviendas destruidas. Entre los años 1974 y 2000 se reportan 97 viviendas destruidas (43% del total), mientras que entre 2011 y 2013 se reportan 129 viviendas destuidas (57% del total). El fenómeno que causó mayor destrucción de viviendas fueron las inundaciones: 186 viviendas en total (82,3%). De estas, 125 viviendas fueron destruidas entre los años 2012 y 2013, durante fenómenos asociados con la Ola Invernal.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="asis-efec-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  A partir de estos indicadores se puede inferir que en la última década ha aumentado significativamente la exposición de viviendas y personas a los fenómenos de inundación, igualmente elementos escenciales como centros educativos y hospitalarios y áreas productivas.
+                </p>
+                
+              </div>
+              <div id="asis-eco-content" style="display:none">
+                <p>
+                  Un cálculo indirecto del valor económico acumulado de las pérdidas se puede estimar a partir del número de viviendas destruidas en el periodo de estudio: el valor de reposición de las 226 viviendas a precio de VIS del 2015 , puede ser del orden de $19 662 000 000. El valor de reposición de las 125  viviendas destruidas entre 2012-2013 podria ser de $10 875 000 000.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="asis-eco-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+            </div>
+          </div>
+          <div id="caicedo-cont" class="content-cont" style="display:none">
+            <h4 class="text-center m-title">Puerto Caicedo</h4>
+            <h1 class="text-center mc-title">Contexto general de Puerto Caicedo</h1>
+            <div class="container-fluid">
+              <div class="row title-sec">
+                <div id="caicedo-geo" class="col-md-2 ind-sel putu-ind nav-tab"> 
+                  Indicadores geogr&aacute;ficos
+                </div>
+                <div id="caicedo-demo" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores demogr&aacute;ficos
+                </div>
+                <div id="caicedo-ame" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores de amenazas
+                </div>
+                <div id="caicedo-efec" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores de efectos de desastres
+                </div>
+                <div id="caicedo-eco" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores econ&oacute;mico de riesgos
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="caicedo-geo-content">
+                <p>
+                  El área del municipio de Puerto Caicedo es de 738 km² aproximadamente. Se identificaron y cartografiaron 13 veredas, de las 69 que registra el Plan de Desarrollo Municipal 2012-2015 (ver mapa sensitivo). 
+                </p>
+                <p>
+                  Para mayor información del municipio ver el  Plan de Desarrollo Municipal 2012-2015 y el EOT de 1999. (colocar hipervinculo)
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="caicedo-geo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="caicedo-demo-content" style="display:none">
+                <p>
+                  Según el Censo DANE del año 2005, la población estimada es de 10 581 habitantes . La densidad promedio de ocupación es de 14,3 habitantes por km².
+                </p>
+                <p>
+                  La población se distribuye en un 71,9% en la zona rural (7606 habitantes) y un 28,1% (2975 habitantes) en la cabecera municipal; en las zonas rurales prevalece la distribución poblacional dispersa.
+                </p>
+                <p>
+                  El 58,3% de la población (6167 habitantes) se auto-reconoce mayoritariamente como de otra etnia, mientras que un 19,1% se reconoce como indígenas (2025 habitantes), seguido de afrodescendientes con un 5,4% (572 habitantes); el 17,2% de la población se reconoce no informa sobre su pertenencia étnica (1817 habitantes).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="caicedo-demo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="caicedo-ame-content" style="display:none">
+                <p>
+                  La base de datos de desastres históricos DesInventar de Colombia  reporta 21 fichas de desastres para el municipio de Puerto Caicedo en el periodo comprendido entre marzo de 1970 y julio de 2013 (43 años). El 76,2% de las fichas (16 reportes) corresponden al periodo 2000-2013 (13 años) y el restante 23,8% de las fichas (5 reportes) corresponden al periodo 1973-1999 (30 años).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="caicedo-ame-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  El 76,2% de los desastres (16 reportes) están asociados a inundaciónes; 19% desastres (4 reportes) a vendavales; es decir que más del 95 % de los desastres estuvieron asociados a tres fenómenos de origen hidrometeorológicos. Se reporta 1 accidente por hundimiento de una canoa en julio de 1974. El evento de mayor recurrencia son las inundaciones.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="caicedo-ame2-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="caicedo-efec-content" style="display:none">
+                <p>
+                  Se reportan 9 víctimas fatales y 3 desaparecidos; en conjunto se reportan más de 24 000 personas con algún tipo de afectación, debido principalmente a inundaciones y vendavales durante la ola invernal 2010-2012. Aparecen 86 viviendas destruidas y 1419 afectadas; respecto a infraestructura esencial se reportan 22 afectaciones a centros educativos, 6 a centros hospitalarios y 6647 ha de cultivos y bosques. Las inundaciones son los fenómenos que más personas ha afectado en el municipio de Puerto Caicedo.
+                </p>
+                <div style="overflow: hidden">
+                  <div class="col-md-6" style="margin: auto">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Efecto</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Muertos</td>
+                          <td>9</td>
+                        </tr>
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td>3</td>
+                        </tr>
+                        <tr>
+                          <td>Heridos - Enfermos</td>
+                          <td>5</td>
+                        </tr>
+                        <tr>
+                          <td>Damnificados</td>
+                          <td>430</td>
+                        </tr>
+                        <tr>
+                          <td>Afectados</td>
+                          <td>24084</td>
+                        </tr>
+                        <tr>
+                          <td>Evacuados</td>
+                          <td>20</td>
+                        </tr>
+                        <tr>
+                          <td>Reubicados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas destruidas</td>
+                          <td>86</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas afectadas</td>
+                          <td>1419</td>
+                        </tr>
+                        <tr>
+                          <td>Cultivos y bosques ha</td>
+                          <td>6647</td>
+                        </tr>
+                        <tr>
+                          <td>Vias afectadas km</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Centros educativos</td>
+                          <td>22</td>
+                        </tr>
+                        <tr>
+                          <td>Centros hospitalarios</td>
+                          <td>6</td>
+                        </tr>
+                        <tr>
+                          <td>Ganado</td>
+                          <td>0</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  La base de datos reporta 3 fichas (14,3% del total) con 86 viviendas destruidas entre 2012 y 2013: 80 por inundaciones y 6 por vendavales. 1035 de las viviendas (73% del total) se vieron afectadas por inundaciones. Las inundaciones son el fenómeno que más viviendas destruye y afecta en el municipio de Puerto Caicedo.   
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="caicedo-efec-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  A partir de estos indicadores se puede inferir que en la última década ha aumentado significativamente la exposición de viviendas y personas a los fenómenos de inundación, igualmente elementos escenciales como centros educativos y hospitalarios y áreas productivas.
+                </p>
+              </div>
+              <div id="caicedo-eco-content" style="display:none">
+                <p>
+                  Un cálculo indirecto del valor económico acumulado de las pérdidas se puede estimar a partir del número de viviendas destruidas en el periodo de estudio: el valor de reposición de las 86 viviendas a precio de VIS del 2015 , puede ser del orden de $7482 000 000.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="caicedo-eco-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+            </div>
+          </div>
+          <div id="miguel-cont" class="content-cont" style="display:none">
+            <h4 class="text-center m-title">San Miguel</h4>
+            <h1 class="text-center mc-title">Contexto general de San Miguel</h1>
+            <div class="container-fluid">
+              <div class="row title-sec">
+                <div id="miguel-geo" class="col-md-2 ind-sel putu-ind nav-tab"> 
+                  Indicadores geogr&aacute;ficos
+                </div>
+                <div id="miguel-demo" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores demogr&aacute;ficos
+                </div>
+                <div id="miguel-ame" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores de amenazas
+                </div>
+                <div id="miguel-efec" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores de efectos de desastres
+                </div>
+                <div id="miguel-eco" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores econ&oacute;mico de riesgos
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="miguel-geo-content">
+                <p>
+                  El área del municipio de San Miguel es de 385 km² aproximadamente. Se identificaron y cartografiaron las 55 veredas que registra el Plan de Desarrollo Municipal 2012-2015 (ver mapa sensitivo). 
+                </p>
+                <p>
+                  El municipio se conformo en abril de 1994. Para mayor información del municipio ver el  Plan de Desarrollo Municipal 2012-2015 y el EOT de 2000. (colocar hipervinculo)
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="miguel-geo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="miguel-demo-content" style="display:none">
+                <p>
+                  Según el Censo DANE del año 2005, la población estimada es de 15 245 habitantes . La densidad promedio de ocupación es de 39,6 habitantes por km², siendo el de mayor densidad poblacional en el área de estudio.
+                </p>
+                <p>
+                  La población se distribuye en un 78% en la zona rural (11 894 habitantes) y un 22% en la cabecera municipal (3351 habitantes); en la zona rural prevalece la distribución poblacional dispersa, con 10 752 habitantes.
+                </p>
+                <p>
+                  El 73,9% de la población (11 269 habitantes) se auto-reconoce como de otra etnia, mientras que un 8,7% se reconoce como indígenas (1327 habitantes), seguido de afrodescendientes con un 4,1% (621 habitantes); el 13,3% de la población no informa sobre su pertenencia étnica (2028 habitantes).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="miguel-demo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="miguel-ame-content" style="display:none">
+                <p>
+                  La base de datos de desastres históricos DesInventar de Colombia  reporta 8 fichas de desastres para el periodo comprendido entre mayo de 2000 y julio de 2013 (13 años). No hay reportes de las décadas anteriores debido a que el municipio se conformó en 1994.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="miguel-ame-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  El 62,5% de los desastres (5 reportes) están asociados a inundaciónes y vendavales; el restante de los reportes de desastres corresponden a avenida torrencial, escape e incendio estructural, con un reporte cada uno.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="miguel-ame2-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="miguel-efec-content" style="display:none">
+                <p>
+                  Se reportan 9 víctimas fatales y más de 7000 personas con algún tipo de afectación, debido principalmente a vendavales (3850 personas) e inundaciones (3000 personas) durante la ola invernal 2010-2012. Aparecen 20 viviendas destruidas por un incendio estructural y 3 por inundación; se reportan 767 afectadas por vendaval; respecto a infraestructura esencial se reportan 9 afectaciones a centros educativos. En las fichas no se reporta ningun valor de pérdidas económicas. Los vendavales son los fenómenos que más personas, viviendas y centros educativos ha afectado en el municipio de San Miguel.
+                </p>
+                <div style="overflow: hidden">
+                  <div class="col-md-6" style="margin: auto">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Efecto</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Muertos</td>
+                          <td>9</td>
+                        </tr>
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Heridos - Enfermos</td>
+                          <td>18</td>
+                        </tr>
+                        <tr>
+                          <td>Damnificados</td>
+                          <td>750</td>
+                        </tr>
+                        <tr>
+                          <td>Afectados</td>
+                          <td>6950</td>
+                        </tr>
+                        <tr>
+                          <td>Evacuados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Reubicados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas destruidas</td>
+                          <td>23</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas afectadas</td>
+                          <td>767</td>
+                        </tr>
+                        <tr>
+                          <td>Cultivos y bosques ha</td>
+                          <td>35</td>
+                        </tr>
+                        <tr>
+                          <td>Vias afectadas km</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Centros educativos</td>
+                          <td>9</td>
+                        </tr>
+                        <tr>
+                          <td>Centros hospitalarios</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Ganado</td>
+                          <td>0</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  A partir de estos indicadores se puede inferir que las viviendas y centros educativos son vulnerables frente al fenómeno vendaval.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="miguel-efec-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="miguel-eco-content" style="display:none">
+                <p>
+                  Un cálculo indirecto del valor económico acumulado de las pérdidas se puede estimar a partir del número de viviendas destruidas en el periodo de estudio: el valor de reposición de las 23 viviendas a precio de VIS del 2015 , puede ser del orden de $2001 000 000.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="miguel-eco-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+            </div>
+          </div>
+          <div id="guamuez-cont" class="content-cont" style="display:none">
+            <h4 class="text-center m-title">Valle del Guamuez</h4>
+            <h1 class="text-center mc-title">Contexto general de Valle del Guamuez</h1>
+            <div class="container-fluid">
+              <div class="row title-sec">
+                <div id="guamuez-geo" class="col-md-2 ind-sel putu-ind nav-tab"> 
+                  Indicadores geogr&aacute;ficos
+                </div>
+                <div id="guamuez-demo" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores demogr&aacute;ficos
+                </div>
+                <div id="guamuez-ame" class="col-md-2  putu-ind nav-tab"> 
+                  Indicadores de amenazas
+                </div>
+                <div id="guamuez-efec" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores de efectos de desastres
+                </div>
+                <div id="guamuez-eco" class="col-md-3  putu-ind nav-tab"> 
+                  Indicadores econ&oacute;mico de riesgos
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="guamuez-geo-content">
+                <p>
+                  El área del municipio de Valle del Guamuez (La Hormiga) es de 994 km² aproximadamente. Se identificaron y cartografiaron las 87 veredas que registra el Plan de Desarrollo Municipal 2012-2015 (ver mapa sensitivo). 
+                </p>
+                <p>
+                  Para mayor información del municipio ver el  Plan de Desarrollo Municipal 2012-2015 y el PBOT de 2003. (colocar hipervinculo)
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="guamuez-geo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="guamuez-demo-content" style="display:none">
+                <p>
+                  Según el Censo DANE del año 2005, la población estimada es de 32 958 habitantes . La densidad promedio de ocupación es de 33,2 habitantes por km².
+                </p>
+                <p>
+                  La población se distribuye en un 61,7% en la zona rural (20 343 habitantes) y un 38,3% en la cabecera municipal (12 615 habitantes); en la zona rural prevalece la distribución poblacional dispersa, con 17 499 habitantes.
+                </p>
+                <p>
+                  El 82,8% de la población (27 285 habitantes) se auto-reconoce como de otra etnia, mientras que un 8,5% se reconoce como indígenas (2788 habitantes), seguido de afrodescendientes con un 2,4% (782 habitantes); el 6,4% de la población se reconoce como raizal o no informa sobre su pertenencia étnica (2103 habitantes).
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="guamuez-demo-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="guamuez-ame-content" style="display:none">
+                <p>
+                  La base de datos de desastres históricos DesInventar de Colombia  reporta 13 fichas de desastres para el periodo comprendido entre julio de 1986 y julio de 2013 (27 años). El 92,3% de las fichas (12 reportes) corresponden al periodo 2000-2013 (13 años), la ficha restante corresponde a un evento ocurrido en julio de 1986.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="guamuez-ame-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  El 69,2% de los desastres (9 reportes) están asociados a inundaciones; el restante 30,8% corresponde a avenidas torrenciales y vendavales con dos reportes cada uno.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="guamuez-ame2-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+              <div id="guamuez-efec-content" style="display:none">
+                <p>
+                  Se reportan 5 desaparecidos y más de 34 000 personas con algún tipo de afectación; de estas, más de 32 000 se presentaron durante la ola invernal 2010-2012. Aparecen 4 viviendas destruidas y 263 afectadas; respecto a infraestructura esencial se reportan 17 afectaciones a centros educativos y 1 a centros hospitalarios, entre otros efectos. Solo 1 fichas (7,7% del total) reporta perdidas económicas que ascienden a $15 601 260, relacionadas con una inundación ocurrida en junio del año 2001. Las inundaciones son el fenómeno que más personas ha afectado en el municipio de Valle del Guamuez (La Hormiga).
+                </p>
+                <div style="overflow: hidden">
+                  <div class="col-md-6" style="margin: auto">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Efecto</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Muertos</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td>5</td>
+                        </tr>
+                        <tr>
+                          <td>Heridos - Enfermos</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Damnificados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Afectados</td>
+                          <td>34030</td>
+                        </tr>
+                        <tr>
+                          <td>Evacuados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Reubicados</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas destruidas</td>
+                          <td>4</td>
+                        </tr>
+                        <tr>
+                          <td>Viviendas afectadas</td>
+                          <td>263</td>
+                        </tr>
+                        <tr>
+                          <td>Cultivos y bosques ha</td>
+                          <td>4706</td>
+                        </tr>
+                        <tr>
+                          <td>Vias afectadas km</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Centros educativos</td>
+                          <td>17</td>
+                        </tr>
+                        <tr>
+                          <td>Centros hospitalarios</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>Ganado</td>
+                          <td>0</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <p>
+                  La base de datos reporta solo 1 ficha con 4 viviendas destruidas debido a inundación en diciembre de 2012, Cinco fichas (38,5% de los reportes) presentan 201 viviendas afectadas por inundaciones durante la ola invernal, mientras que 2 vendavales han afectado 62 viviendas. También reporta 1 ficha con 14 centros educativos afectados por inundación en julio de 2012.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="guamuez-efec-chart" class="ct-chart ct-square pchart"></div></div>
+                <p>
+                  A partir de estos indicadores se puede inferir que en la última década ha aumentado significativamente la exposición de viviendas y centros educativos al fenómeno inundación y también que estas estructuras son vulnerables a este tipo de fenómenos.
+                </p>
+              </div>
+              <div id="guamuez-eco-content" style="display:none">
+                <p>
+                  Un cálculo indirecto del valor económico acumulado de las pérdidas se puede estimar a partir del número de viviendas destruidas en el periodo de estudio: el valor de reposición de las 4 viviendas a precio de VIS del 2015 , puede ser del orden de $348 000 000.
+                </p>
+                <div class="pchart" style="overflow: hidden;"><div id="guamuez-eco-chart" class="ct-chart ct-square pchart"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="agreement-content" style="display:none">
+        <h1 class="title">Convenios</h1>
+        <div class="title-line"></div>
+        <ul>
+          <li>
+            01_DHS-005_2010-2011
+            <ul>
+              <li>
+                <a href="convenios/01_DHS-005_2010-2011/99_Informe Final_DHS-005-10.pdf" download>99_Informe Final_DHS-005-10</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            02_DHS-5210995_2011-2012
+            <ul>
+              <li>
+                <a href="convenios/02_DHS-5210995_2011-2012/99A_Informe FINAL_DHS 5210995.pdf" download>99A_Informe FINAL_DHS 5210995</a>
+              </li>
+              <li>
+                <a href="convenios/02_DHS-5210995_2011-2012/99B_Informe final del Adicional 1_DHS 5210995.pdf" download>99B_Informe final del Adicional 1_DHS 5210995</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            03_DHS-5211565_2012-2014
+            <ul>
+              <li>
+                <a href="convenios/03_DHS-5211565_2012-2014/99_INFORME FINAL_DHS5211565.pdf" download>99_INFORME FINAL_DHS5211565</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            04_DHS-5211841_2013-2015
+            <ul>
+              <li>
+                <a href="convenios/04_DHS-5211841_2013-2015/99_Informe Final_DHS5211841.pdf" download>99_Informe Final_DHS5211841</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            05_DHS-5219470_2014-2015
+            <ul>
+              <li>
+                <a href="convenios/05_DHS-5219470_2014-2015/00_Propuesta_DHS5219470.pdf" download>00_Propuesta_DHS5219470</a>
+              </li>
+              <li>
+                <a href="convenios/05_DHS-5219470_2014-2015/01_Informe 01_DHS5219470.pdf" download>01_Informe 01_DHS5219470</a>
+              </li>
+              <li>
+                <a href="convenios/05_DHS-5219470_2014-2015/01_Informe 02_DHS5219470.pdf" download>01_Informe 02_DHS5219470</a>
+              </li>
+              <li>
+                <a href="convenios/05_DHS-5219470_2014-2015/01_Informe 03_DHS5219470.pdf" download>01_Informe 03_DHS5219470</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
-    <script src="myScript.js"></script>
+    <footer class="site-footer">
+      <div class="pre-footer text-center">
+        &COPY; 2016 Sistematizacion de la experiencia del programa de Gestion del Riesgo de Putumayo - Todos los derechos reservados
+      </div>
+      <div style="padding: 1em 5em; overflow: hidden;">
+        <div class="col-sm-6 col-md-6 col-lg-6 text-left" style="padding-bottom: 10px">
+          <div class="footer-part">
+            <div>Sitios relacionados</div>
+            <div class="contact-item"><a href="http://www.ecopetrol.com.co/wps/portal/web_es" target="_blank">Ecopetrol</a></div>
+            <div class="contact-item"><a href="http://corporiesgos.org" target="_blank">Corporriesgos</a></div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 text-left" style="padding-bottom: 10px">
+          <div class="footer-part">
+            <div>Cont&aacute;ctenos</div>
+            <div class="contact-item"><a href="mailto:amparo.velasquez@corporiesgos.org">Email: amparo.velasquez@corporiesgos.org</a></div>
+            <div class="contact-item">Linea de contacto: 57 (2) 514 6202</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="js/myScript.js"></script>
   </body>
-  
+
 </html>
+<!--<div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4 text-center">+ Acerca de esta herramienta</div>
+      <div class="col-sm-4 col-md-4 col-lg-4 text-center">+ La regi&oacute;n</div>
+      <div class="col-sm-4 col-md-4 col-lg-4 text-center">+ Convenios</div>
+    </div>-->
